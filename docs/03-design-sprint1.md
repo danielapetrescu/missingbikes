@@ -4,7 +4,7 @@
 
 ### Bikes Table
 - id: number, unic identifier, auto generated
-- brand: text
+- brand_id: number (links to brands table)
 - color : text
 - description: text max 50 char
 - date: date
@@ -12,14 +12,22 @@
 - longitude: number
 - address: text
 
+### brands table
+- id: number, unic identifier, auto generated
+- name: text, unique (list is extensible — users can add a new brand from the Add Bike form if theirs isn't listed)
+
 ### bike_photos table
 - id: number, unic identifier, auto generated
 - bike_id: number (links to bikes table)
-- file_path: text ( path/filename of the photo on the server )
+- path: text ( path/filename of the photo on the server )
 
 ## API endpoints
 GET /api/bikes -> return the list of all bikes
-POST /api/bikes -> add a new bike (receive form data, saves on database)
+POST /api/bikes -> add a new bike (receive form data + photos as multipart/form-data, saves on database)
+GET /api/brands -> return the list of all brands
+POST /api/brands -> add a new brand
+GET /api/geocode -> reverse geocode latitude/longitude into a text address (used when adding a bike)
+GET /api/address/suggestions -> return address suggestions for a typed text (autocomplete, used when adding a bike)
 
 ## Page structure
 /       -> homepage, show the list of all bikes
@@ -40,3 +48,10 @@ POST /api/bikes -> add a new bike (receive form data, saves on database)
 - Photo upload limit: max 4 photos per bike
 - Accepted photo formats: JPEG, PNG, HEIC
 - Max photo size: 10 MB per photo
+- Pages are server-rendered with Thymeleaf (not a separate frontend app)
+- Reverse geocoding is done server-side by the app calling the Google Maps 
+  Geocoding API, using an API key from the GOOGLE_MAPS_API_KEY env var
+- Uploaded photos are saved under a configurable upload directory, in one 
+  subfolder per bike id
+- No fixed "Other" option for Brand or Color — the user must pick an 
+  existing value, or add a new brand from the form
