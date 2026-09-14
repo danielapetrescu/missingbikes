@@ -1,0 +1,54 @@
+body {
+    background: #EEF1F1;
+    font-family: 'Inter', sans-serif;
+    color: #14201F;
+}
+.brand-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+.tagline {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: #566361;
+}
+.card {
+    background: #FFFFFF;
+    border: 0.5px solid #D3DBDC;
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 520px;
+}
+.card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+.btn-location {
+    background: #D8E6E6;
+    border: 0.5px solid #A9C3C5;
+    color: #0E4C5C;
+}
+.btn-location:hover {
+    background: #C3D8D9;
+    color: #0E4C5C;
+}
+.btn-add {
+    background: #D9603B;
+    border: none;
+    color: #FFF3EC;
+    font-weight: 500;
+}
+.btn-add:hover {
+    background: #C04E2C;
+    color: #FFF3EC;
+}
+.location-display {
+    border: 0.5px solid #D3DBDC;
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: #14201F;
+    font-size: 14px;
+    min-height: 36px;
+}
