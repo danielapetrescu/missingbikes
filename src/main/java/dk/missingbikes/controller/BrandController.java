@@ -2,7 +2,9 @@ package dk.missingbikes.controller;
 
 import dk.missingbikes.model.Brand;
 import dk.missingbikes.repository.BrandRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,6 +24,10 @@ public class BrandController {
 
     @PostMapping
     public Brand addBrand(@RequestBody Brand brand){
-        return brandRepository.save(brand);
+        if(brandRepository.existsByName(brand.getName())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This brand already exists");
+        } else {
+            return brandRepository.save(brand);
+        }
     }
 }

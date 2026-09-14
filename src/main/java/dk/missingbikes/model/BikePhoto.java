@@ -11,9 +11,10 @@ public class BikePhoto {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bike_id")
+    @JoinColumn(name = "bike_id", nullable = false)
     private Bike bike;
 
+    @Column(nullable = false)
     private String path;
 
     public BikePhoto() {

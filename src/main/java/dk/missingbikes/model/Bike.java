@@ -14,18 +14,26 @@ public class Bike {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Color color;
 
     @Size(max = 50, message = "Description must be 50 characters or less")
     private String description;
 
+    @Column(nullable = false)
     private LocalDate date;
+
+    @Column(nullable = false)
     private Double latitude;
+
+    @Column(nullable = false)
     private Double longitude;
+
+    @Column(nullable = false)
     private String address;
 
     public Bike() {
