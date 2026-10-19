@@ -52,3 +52,81 @@ body {
     font-size: 14px;
     min-height: 36px;
 }
+
+/* --- Bike list on the home page --- */
+.empty-note {
+    margin-top: 1.5rem;
+    color: #566361;
+    font-size: 15px;
+}
+.bike-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+.bike-card {
+    background: #FFFFFF;
+    border: 0.5px solid #D3DBDC;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.bike-card:hover {
+    box-shadow: 0 6px 18px rgba(14, 76, 92, 0.10);
+    transform: translateY(-2px);
+}
+.bike-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #E3E9E9;
+}
+.bike-body {
+    padding: 1rem 1.1rem 1.1rem;
+}
+.bike-brand {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+.bike-color {
+    display: inline-block;
+    background: #D8E6E6;
+    border: 0.5px solid #A9C3C5;
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 12px;
+    color: #0E4C5C;
+}
+.bike-description {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 14px;
+    color: #14201F;
+}
+.bike-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0.25rem;
+    font-size: 13px;
+    color: #566361;
+}
+.bike-meta i {
+    font-size: 15px;
+    color: #0E4C5C;
+}
+.bike-address-link {
+    color: #0E4C5C;
+    text-decoration: none;
+    border-bottom: 1px solid #A9C3C5;
+}
+.bike-address-link:hover {
+    color: #0A3743;
+    border-bottom-color: #0E4C5C;
+}

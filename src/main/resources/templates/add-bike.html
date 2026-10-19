@@ -20,7 +20,7 @@
     <div class="card">
         <p class="card-title mb-3">Add a found bike</p>
 
-        <form id="addBikeForm" th:action="@{/api/bikes}" method="post" enctype="multipart/form-data">
+        <form id="addBikeForm" th:action="@{/add}" method="post" enctype="multipart/form-data">
 
             <div class="row g-3 mb-2">
                 <div class="col-6">
@@ -31,7 +31,7 @@
                                 th:text="${brand.name}"></option>
                     </select>
                     <button type="button" class="btn btn-link p-0 mt-1" onclick="toggleAddBrand()">+ Add brand</button>
-                    <div id="addBrandGroup" class="d-flex gap-2 mt-2" hidden>
+                    <div id="addBrandGroup" class="d-flex gap-2 mt-2 d-none">
                         <input type="text" id="newBrandName" class="form-control form-control-sm" placeholder="New brand name">
                         <button type="button" class="btn btn-sm btn-location" onclick="saveNewBrand()">Save</button>
                         <button type="button" class="btn btn-sm btn-light" onclick="cancelAddBrand()">Cancel</button>
@@ -70,6 +70,8 @@
                 <input type="file" id="photos" name="photos" accept="image/*" multiple required onchange="validatePhotos()" class="form-control">
                 <div id="photoError" class="text-danger"></div>
             </div>
+
+            <div class="text-danger mb-3" th:if="${error != null}" th:text="${error}"></div>
 
             <button type="submit" class="btn btn-add w-100">Add bike</button>
 
@@ -168,17 +170,26 @@
     }
 
     function validatePhotos() {
-        if(document.getElementById("photos").files.length > 4){
-            document.getElementById("photos").value = "";
+        const maxSize = 10 * 1024 * 1024;
+        document.getElementById("photoError").textContent = "";
+        const photoInput = document.getElementById("photos");
+        if(photoInput.files.length > 4){
+            photoInput.value = "";
             document.getElementById("photoError").textContent = "You should select max 4 photos";
         } else {
-            document.getElementById("photoError").textContent = "";
+            for(const f of photoInput.files){
+                if(f.size > maxSize){
+                    document.getElementById("photoError").textContent = "Photo should have maximum 10 MB";
+                    photoInput.value = "";
+                    return;
+                }
+            }
         }
     }
 
     function toggleAddBrand(){
         const el = document.getElementById("addBrandGroup");
-        el.hidden = !el.hidden;
+        el.classList.toggle("d-none");
     }
 
     function saveNewBrand(){
@@ -204,7 +215,7 @@
                 el.textContent = newBrand.name;
                 document.getElementById("brand").appendChild(el);
                 el.selected = true;
-                document.getElementById("addBrandGroup").hidden = true;
+                document.getElementById("addBrandGroup").classList.add("d-none");
                 document.getElementById("newBrandName").value = "";
                 document.getElementById("brandError").textContent = "";
             })
@@ -214,7 +225,7 @@
     }
 
     function cancelAddBrand(){
-        document.getElementById("addBrandGroup").hidden = true;
+        document.getElementById("addBrandGroup").classList.add("d-none");
         document.getElementById("newBrandName").value = "";
         document.getElementById("brandError").textContent = "";
     }

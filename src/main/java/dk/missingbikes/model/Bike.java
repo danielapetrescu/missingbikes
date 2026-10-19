@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "bikes")
@@ -35,6 +37,10 @@ public class Bike {
 
     @Column(nullable = false)
     private String address;
+
+    @OneToMany(mappedBy = "bike")
+    @OrderBy("id")
+    private List<BikePhoto> photos = new ArrayList();
 
     public Bike() {
     }
@@ -103,4 +109,13 @@ public class Bike {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public List<BikePhoto> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<BikePhoto> photos) {
+        this.photos = photos;
+    }
+
 }
