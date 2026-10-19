@@ -34,3 +34,7 @@ build/
 
 ### Uploaded bike photos (runtime data, not source) ###
 /uploads/
+
+### Claude Code ###
+CLAUDE.md
+.claude/
