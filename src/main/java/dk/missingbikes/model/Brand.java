@@ -16,8 +16,8 @@ public class Brand {
     public Brand() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Brand(String name){
+        this.name = name;
     }
 
     public Long getId() {
@@ -28,7 +28,4 @@ public class Brand {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }
